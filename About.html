@@ -1,1 +1,172 @@
 
+!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — 0xPr3dat0r</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family: 'Press Start 2P', monospace;
+    background: #000;
+    overflow-x:hidden;
+    color:#0ff;
+}
+
+canvas#bg{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+
+h1{
+    text-align:center;
+    color:#ff00ff;
+    margin-top:40px;
+    font-size:2em;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from {text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;}
+    to {text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff;}
+}
+
+.section{
+    max-width:900px;
+    margin:50px auto;
+    padding:20px;
+    background: rgba(0,0,0,0.6);
+    border-left:4px solid #0ff;
+    animation: slideIn 1.5s ease forwards;
+    opacity:0;
+}
+
+@keyframes slideIn{
+    to {opacity:1; transform: translateY(0);}
+    from {opacity:0; transform: translateY(50px);}
+}
+
+ul{
+    list-style:none;
+    padding-left:0;
+}
+
+ul li{
+    margin:10px 0;
+    position:relative;
+    animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float{
+    0%,100%{transform: translateX(0);}
+    50%{transform: translateX(10px);}
+}
+
+a{
+    color:#ff00ff;
+    text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="bg"></canvas>
+
+<h1>0xPr3dat0r</h1>
+
+<div class="section">
+<h2>About Me</h2>
+<p>
+I am 0xPr3dat0r, a cybersecurity enthusiast exploring offensive security, labs, and research. 
+This blog documents my experiments, papers, and projects.
+</p>
+</div>
+
+<div class="section">
+<h2>Cybersecurity Journey</h2>
+<p>
+I practice hands-on labs, explore vulnerabilities, and learn real-world attack & defense strategies. Platforms like TryHackMe help me sharpen my skills.
+</p>
+</div>
+
+<div class="section">
+<h2>Areas of Interest</h2>
+<ul>
+<li>Web application security</li>
+<li>Red teaming & penetration testing</li>
+<li>Security automation & tooling</li>
+<li>Offensive security labs</li>
+<li>Vulnerability research</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Contact</h2>
+<p>GitHub: <a href="https://github.com/">Profile</a></p>
+</div>
+
+<script>
+// Floating particles + anime effect
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+const particleCount = 100;
+
+// Load anime background image
+const animeBg = new Image();
+animeBg.src = 'https://i.pinimg.com/originals/5f/1a/8f/5f1a8f592bc1e2b9303fffc83a72c2de.gif';
+
+for(let i=0;i<particleCount;i++){
+    particles.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        r: Math.random()*2 + 1,
+        dx: Math.random()*2 - 1,
+        dy: Math.random()*2 - 1
+    });
+}
+
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    // Draw background anime image faintly
+    ctx.globalAlpha = 0.2;
+    ctx.drawImage(animeBg, 0, 0, canvas.width, canvas.height);
+    ctx.globalAlpha = 1;
+
+    particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle = '#0ff';
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if(p.x < 0 || p.x>canvas.width) p.dx *= -1;
+        if(p.y < 0 || p.y>canvas.height) p.dy *= -1;
+    });
+    requestAnimationFrame(animate);
+}
+
+animeBg.onload = animate;
+
+window.addEventListener('resize', ()=>{
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+</script>
+
+</body>
+</html>
