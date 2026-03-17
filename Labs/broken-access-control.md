@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Broken Access Control
+title: Broken Access Control Lab
 ---
 
 Access control is a way an application decide what the user can do 
