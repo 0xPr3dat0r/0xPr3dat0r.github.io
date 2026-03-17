@@ -37,7 +37,7 @@ So as you can see an unauthorized user got access to the admin panel and the una
 ![[Pasted image 20250923004917.png]]
 
 **Step 1: I intercepted the request using burp proxy and i went straight to login page.
-image/![[Pasted image 20250923005037.png]]
+![[Pasted image 20250923005037.png]]
 ![[Pasted image 20250923005151.png]]
 **Step 2:  Tried to login wasn't meant to login ![[Pasted image 20250923005323.png]]
 ![[Pasted image 20250923005536.png]]
