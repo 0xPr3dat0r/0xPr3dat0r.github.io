@@ -20,11 +20,10 @@ title: Labs
 <section class="latest-card">
   <h2>Active Experiments / Labs</h2>
   
-  <p><strong>Lab 01 — Linux Kernel 6.12 Exploit Dev Rig</strong></p>
+  <p><strong>Broken Access Control</strong></p>
   <p><em>Status:</em> Running • Last updated: March 2026</p>
   <p>
-    Custom QEMU setup with KGDB + eBPF tracing. 
-    Currently smashing use-after-free in netfilter. 
+     comming soon 
     Write-up dropping soon.
   </p>
   <p><a href="#" class="highlight">→ View full lab notes (private for now)</a></p>
