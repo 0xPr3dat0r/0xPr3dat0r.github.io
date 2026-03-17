@@ -10,10 +10,10 @@ Vertical privilege escalation is when the hacker moves from a low level user and
 **Unprotected Functionality**: This type access control vulnerability is when the hacker or a user can request for a particular page this is only intended for the admin by typing it into the url, Hackers can also bruteforce webpages of the website and for this to occur there has to be some form of vertical privilege escalation. For example a website host a sensitive functionality like this `https://website.com/` and then the hackers can just admin to the url and it actually gives them the admin page `https://website.com/admin`
 
 **Lab : - Unprotected admin functionality**
-![Unprotected admin functionality](../Image/Pasted image 20250909142211.png)
+![Unprotected admin functionality](/Image/Pasted image 20250909142211.png)
 
 **Step 1: I started by intercepting the website traffic**
-![Intercepting website traffic](../Image/Pasted image 20250912185020.png)
+![Intercepting website traffic](/Image/Pasted image 20250912185020.png)
 
 **Step 2 : I look at all the functionality in the web page**
 ![Web page functionality overview](../Image/Pasted image 20250912185138.png)
