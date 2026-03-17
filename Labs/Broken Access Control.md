@@ -1,4 +1,4 @@
- Access control is a way an application decide  what the user can do 
+Access control is a way an application decide  what the user can do 
 * Authentication - Confirms the users identity 
 * Session Management - Tracks the users activities and identifies the request that are being made by the user
 * Access Control - Checks if the action that the users is about to perform is permitted 
@@ -37,7 +37,7 @@ So as you can see an unauthorized user got access to the admin panel and the una
 ![[Pasted image 20250923004917.png]]
 
 **Step 1: I intercepted the request using burp proxy and i went straight to login page.
-![[Pasted image 20250923005037.png]]
+image/![[Pasted image 20250923005037.png]]
 ![[Pasted image 20250923005151.png]]
 **Step 2:  Tried to login wasn't meant to login ![[Pasted image 20250923005323.png]]
 ![[Pasted image 20250923005536.png]]
