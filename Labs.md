@@ -1,63 +1,274 @@
----
-title: Labs
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>0xPr3dat0r — Security Labs</title>
 
-<section class="welcome-card">
-  <h2>0xPr3dat0r Labs</h2>
-  <p>It's <span class="highlight">live fire</span> here.</p>
-  <p>
-    This is where the real breaking happens. 
-    Isolated environments, custom tooling, kernel fuzzers, exploit dev rigs, 
-    and every weird protocol or ancient vuln I decide to resurrect.
-  </p>
-  <p>
-    No screenshots. No fluff. Just raw lab notes, reproducible setups, 
-    and the exact commands that made things explode (or survive).
-  </p>
-  <p class="highlight">Current focus: Offensive kernel research + modern browser sandbox escapes.</p>
-</section>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-<section class="latest-card">
-  <h2>Active Experiments / Labs</h2>
-  
-  <p><strong>Broken Access Control</strong></p>
-  <p><em>Status:</em> Running • Last updated: March 2026</p>
-  <p>
-     comming soon 
-    Write-up dropping soon.
-  </p>
-  <p><a href="#" class="highlight">→ View full lab notes (private for now)</a></p>
+<style>
+:root {
+--bg:#000000;
+--dark-green:#0a1f0a;
+--neon-green:#39ff14;
+--neon-green-dim:#00cc11;
+--text:#e0ffe0;
+--text-dim:#88cc88;
+}
 
-  <hr style="border-color: #0a3a1a; margin: 2rem 0;">
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-  <p><strong>Lab 02 — Chrome Sandbox Escape Playground</strong></p>
-  <p><em>Status:</em> Building • Last updated: March 2026</p>
-  <p>
-    Renderer → GPU → Broker chain. 
-    Using mojom fuzzing + custom renderer payloads. 
-    Goal: full system compromise from a single tab.
-  </p>
-  <p><a href="#" class="highlight">→ View full lab notes (private for now)</a></p>
+body{
+background:var(--bg);
+color:var(--text);
+font-family:'JetBrains Mono','Courier New',monospace;
+line-height:1.6;
+overflow-x:hidden;
+}
 
-  <hr style="border-color: #0a3a1a; margin: 2rem 0;">
+canvas#matrix{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-2;
+}
 
-  <p><strong>Lab 03 — USB Rubber Ducky 2.0 Firmware Lab</strong></p>
-  <p><em>Status:</em> Idle • Last updated: Feb 2026</p>
-  <p>
-    Fully custom ATmega32U4 + RP2040 payloads. 
-    Testing new HID evasion techniques against EDR.
-  </p>
-</section>
+.overlay{
+position:fixed;
+inset:0;
+background:linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,20,0,0.55) 100%);
+pointer-events:none;
+z-index:-1;
+}
 
-<section class="latest-card" style="margin-top: 3rem;">
-  <h2>Want access?</h2>
-  <p>
-    These labs are my personal war rooms. 
-    Some write-ups and tools will be public. 
-    The dangerous stuff stays private.
-  </p>
-  <p>
-    If you're serious about offensive security and want to collab or get early access, 
-    hit me up on X or Signal (link in About).
-  </p>
-</section>
+header{
+background:rgba(10,31,10,0.85);
+backdrop-filter:blur(6px);
+border-bottom:1px solid var(--neon-green-dim);
+padding:1.5rem 5%;
+position:sticky;
+top:0;
+z-index:100;
+text-align:center;
+}
+
+.logo{
+font-family:'Press Start 2P',monospace;
+font-size:2.8rem;
+color:var(--neon-green);
+text-shadow:0 0 12px var(--neon-green-dim),0 0 24px #00aa00;
+letter-spacing:3px;
+margin-bottom:.4rem;
+}
+
+header p{
+color:var(--text-dim);
+font-size:1.1rem;
+text-shadow:0 0 6px rgba(57,255,20,0.3);
+}
+
+nav{
+background:rgba(0,0,0,0.6);
+padding:1rem;
+text-align:center;
+border-bottom:1px solid var(--neon-green-dim);
+}
+
+nav a{
+color:var(--text-dim);
+text-decoration:none;
+margin:0 1.5rem;
+font-size:1rem;
+font-weight:500;
+transition:all .3s;
+}
+
+nav a:hover{
+color:var(--neon-green);
+text-shadow:0 0 10px var(--neon-green);
+}
+
+main{
+max-width:1100px;
+margin:4rem auto 6rem;
+padding:0 5%;
+}
+
+h2{
+font-family:'Press Start 2P',monospace;
+color:var(--neon-green);
+text-shadow:0 0 10px rgba(57,255,20,0.5);
+margin:2rem 0 1.2rem;
+font-size:1.5rem;
+}
+
+.lab-card{
+background:rgba(10,31,10,0.4);
+border:1px solid var(--neon-green-dim);
+border-radius:6px;
+padding:2rem;
+margin-bottom:2rem;
+backdrop-filter:blur(5px);
+transition:all .4s ease;
+}
+
+.lab-card:hover{
+border-color:var(--neon-green);
+box-shadow:0 0 22px rgba(57,255,20,0.3);
+}
+
+.lab-title{
+font-size:1.2rem;
+color:var(--neon-green);
+margin-bottom:.5rem;
+}
+
+.lab-meta{
+color:var(--text-dim);
+font-size:.9rem;
+margin-bottom:1rem;
+}
+
+.lab-desc{
+margin-bottom:1rem;
+}
+
+.read-link{
+color:var(--neon-green);
+text-decoration:none;
+font-weight:bold;
+}
+
+.read-link:hover{
+text-shadow:0 0 8px var(--neon-green);
+}
+
+footer{
+text-align:center;
+padding:3rem 0 2rem;
+color:#335533;
+font-size:.9rem;
+border-top:1px solid #0d3b1f;
+}
+
+@media (max-width:768px){
+.logo{font-size:2.2rem;}
+nav a{margin:0 1rem;font-size:.95rem;}
+main{margin-top:2rem;}
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+<div class="overlay"></div>
+
+<header>
+<div class="logo">0xPr3dat0r</div>
+<p>Research • Security • Experiments</p>
+</header>
+
+<nav>
+<a href="index">Home</a>
+<a href="#">Papers</a>
+<a href="Projects">Projects</a>
+<a href="Labs">Labs</a>
+<a href="About">About</a>
+</nav>
+
+<main>
+
+<h2>Security Labs</h2>
+
+<div class="lab-card">
+<div class="lab-title">Race Condition — Partial Construction</div>
+<div class="lab-meta">Platform: PortSwigger | Difficulty: Expert</div>
+<p class="lab-desc">
+Exploring a race condition vulnerability where the server processes requests during partial account construction. The goal was to bypass email verification and gain unauthorized account creation.
+</p>
+<a class="read-link" href="#">Read Write-up →</a>
+</div>
+
+<div class="lab-card">
+<div class="lab-title">Server Side Request Forgery (SSRF)</div>
+<div class="lab-meta">Category: Web Security</div>
+<p class="lab-desc">
+Testing SSRF behaviors against internal endpoints, metadata services, and filtering mechanisms. Includes payload testing strategies and request smuggling techniques.
+</p>
+<a class="read-link" href="#">Read Write-up →</a>
+</div>
+
+<div class="lab-card">
+<div class="lab-title">Authentication Logic Flaws</div>
+<div class="lab-meta">Category: Web Security</div>
+<p class="lab-desc">
+Breaking flawed authentication workflows and session validation logic to gain unauthorized access to restricted user accounts.
+</p>
+<a class="read-link" href="#">Read Write-up →</a>
+</div>
+
+<div class="lab-card">
+<div class="lab-title">Black Fire Tool Experiments</div>
+<div class="lab-meta">Research Tool</div>
+<p class="lab-desc">
+Internal research and testing logs for <strong>Black Fire</strong>, a tool built to automate SSRF discovery and payload injection experiments.
+</p>
+<a class="read-link" href="#">View Experiments →</a>
+</div>
+
+</main>
+
+<footer>
+© 2026 0xPr3dat0r — All wrongs reversed.
+</footer>
+
+<script>
+const canvas=document.getElementById('matrix');
+const ctx=canvas.getContext('2d');
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+const chars='01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*';
+const fontSize=16;
+const columns=canvas.width/fontSize;
+const drops=Array(Math.floor(columns)).fill(1);
+
+function draw(){
+ctx.fillStyle='rgba(0,0,0,0.05)';
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle='#39ff14';
+ctx.font=fontSize+'px monospace';
+
+drops.forEach((y,i)=>{
+const text=chars.charAt(Math.floor(Math.random()*chars.length));
+const x=i*fontSize;
+
+ctx.fillText(text,x,y*fontSize);
+
+if(y*fontSize>canvas.height && Math.random()>0.975){
+drops[i]=0;
+}
+drops[i]++;
+});
+}
+
+setInterval(draw,40);
+
+window.addEventListener('resize',()=>{
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+});
+</script>
+
+</body>
+</html>
