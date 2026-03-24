@@ -1,4 +1,4 @@
- Access control is a way an application decide  what the user can do 
+Access control is a way an application decide  what the user can do 
 * Authentication - Confirms the users identity 
 * Session Management - Tracks the users activities and identifies the request that are being made by the user
 * Access Control - Checks if the action that the users is about to perform is permitted 
