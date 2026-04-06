@@ -10,16 +10,16 @@ Vertical privilege escalation is when the hacker moves from a low level user and
 **Unprotected Functionality:-  This type access control vulnerability is when the hacker or a user can request for a particular page this is only intended for the admin by typing it into the url, Hackers can also bruteforce webpages of the website and for this to occur there has to be some form of vertical privilege escalation. For example a website host a sensitive functionality like this `https://website.com/` and then the hackers can just admin to the url and it actually gives them the admin page `https://website.com/admin`**
 
 **Lab : - Unprotected admin functionality**
-![Pasted image 20250909142211.png](Images/Pasted%20image%2020250909142211.png)
+![Pasted image 20250909142211.png](Image/Pasted%20image%2020250909142211.png)
 
 **Step 1: I started by intercepting the website traffic**
-![Pasted image 20250912185020.png](Images/Pasted%20image%2020250912185020.png)
+![Pasted image 20250912185020.png](Image/Pasted%20image%2020250912185020.png)
 
 **Step 2 : I look at all the functionality in the web page**
 ![Pasted image 20250912185138.png](Images/Pasted%20image%2020250912185138.png)
 I noticed the My Account Button 
 **Step 3: Got redirected to the login page**
-![Pasted image 20250912185402.png](Images/Pasted%20image%2020250912185402.png)
+![Pasted image 20250912185402.png](Image/Pasted%20image%2020250912185402.png)
 Then i sent the request to Burp Repeater 
 ![Pasted image 20250912185540.png](Images/Pasted%20image%2020250912185540.png)
 
